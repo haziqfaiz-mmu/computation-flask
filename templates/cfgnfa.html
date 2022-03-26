@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>{% block title %} Convert Regular Grammar to NFA {% endblock %}</h1>
-    <form method="post">
+    <form method="post" action="/cfgnfasolution">
         
 
         
@@ -16,4 +16,14 @@
         <br>
         <button type="submit">Submit</button>
     </form>
+    <p>Q = {{Q}}</p>
+    <br>
+    <p>Sigma = {{sigma}}</p>
+    <br>
+    <p>Delta = {{delta}}</p>
+    <br>
+    <p>Initial State = {{initialState}}</p>
+    <br>
+    <p>Final State = {{finalState}}</p>
+    
 {% endblock %}

@@ -5,11 +5,6 @@ import sys
 app = Flask(__name__)
 app.config["SECRET_KEY"] = '48ea7d330380ad0bdc892ccbb2bcaaff3e59ca6b90a2da09'
 
-messages = [{'title': 'Message One',
-             'content': 'Message One Content'},
-            {'title': 'Message Two',
-             'content': 'Message Two Content'}
-            ]
 
 
 
@@ -20,12 +15,16 @@ def index():
         if not grammar:
             flash("Grammar is required")
         else:
-            return redirect(url_for('index'))
-
-            
+            return redirect(url_for('cfgnfasolution'))
+   
     return render_template('cfgnfa.html')
 
-@app.route('/nfacfg', methods=('GET', 'POST'))
+@app.route('/cfgnfasolution',methods=('GET','POST'))
+def cfgnfasolution():
+    grammar = request.form['content']
+    return render_template('cfgnfa.html',grammar=grammar)
+
+@app.route('/nfacfg/', methods=('GET', 'POST'))
 def index2():
     if request.method == 'POST':
         title = request.form['title']
@@ -39,6 +38,10 @@ def index2():
             messages.append({'title': title, 'content': content})
             return redirect(url_for('index2'))
     return render_template('nfacfg.html')
+
+@app.route('/nfacfgsolution/',methods=('GET','POST'))
+def nfacfgsolution():
+    return
 
 
 
