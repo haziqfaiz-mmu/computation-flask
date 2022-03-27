@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block grammar %}
     <h1>{% block title %} Convert Regular Grammar to NFA {% endblock %}</h1>
     <form method="post" action="/cfgnfasolution">
         
 
         
-        <label for="content">Input Regular Grammar</label>
+        <label for="grammar">Input Regular Grammar</label>
         <br>
-        <textarea name="content"
-                  placeholder="Message content"
+        <textarea name="grammar"
+                  placeholder="Enter grammar"
                   rows="15"
                   cols="60"
-                  >{{ request.form['content'] }}</textarea>
+                  >{{ request.form['grammar'] }}</textarea>
         <br>
         <button type="submit">Submit</button>
     </form>
@@ -25,5 +25,23 @@
     <p>Initial State = {{initialState}}</p>
     <br>
     <p>Final State = {{finalState}}</p>
+    
+{% endblock %}
+
+{% block validate %}
+    <form method="post" action="/cfgnfasolution">
+        
+
+        
+        <label for="validate">Input Strings To Validate</label>
+        <br>
+        <textarea name="validate"
+                  placeholder="Enter 5 strings"
+                  rows="15"
+                  cols="60"
+                  >{{ request.form['validate'] }}</textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
     
 {% endblock %}

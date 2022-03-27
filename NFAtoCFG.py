@@ -11,8 +11,8 @@ def NFAtoCFG(Q,sigma,delta):
         i=i+1
     #fill in LHS of cfg
     i=0
-    for x in Q:
-        cfg[i]+=(x +" ->")
+    for state in delta:
+        cfg[i]+=(state +" ->")
         i=i+1
     
     #use transition function to fill inn the rest

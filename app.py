@@ -11,24 +11,20 @@ app.config["SECRET_KEY"] = '48ea7d330380ad0bdc892ccbb2bcaaff3e59ca6b90a2da09'
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
-    if request.method == 'POST':
-        grammar = request.form['content']
-        if not grammar:
-            flash("Grammar is required")
-        else:
-            return redirect(url_for('cfgnfasolution'))
+    
    
     return render_template('cfgnfa.html')
 
 @app.route('/cfgnfasolution',methods=('GET','POST'))
 def cfgnfasolution():
-    string = request.form['content']
+    string = request.form['grammar']
     Q = CFGtoNFA.getState(string)
     sigma = CFGtoNFA.getSigma(string,Q)
     initialState = CFGtoNFA.getInitialState(string,Q)
     finalState = CFGtoNFA.getFinalState(string,sigma)
     delta = CFGtoNFA.getDelta(string,Q,sigma)
     return render_template('cfgnfa.html',Q=Q,sigma=sigma, initialState=initialState, finalState=finalState,delta=delta)
+
 
 @app.route('/nfacfg/', methods=('GET', 'POST'))
 def index2():
