@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 
-{% block grammar %}
+{% block content %}
     <h1>{% block title %} Convert Regular Grammar to NFA {% endblock %}</h1>
     <form method="post" action="/cfgnfasolution">
-        
-
-        
         <label for="grammar">Input Regular Grammar</label>
         <br>
         <textarea name="grammar"
@@ -29,10 +26,7 @@
 {% endblock %}
 
 {% block validate %}
-    <form method="post" action="/cfgnfasolution">
-        
-
-        
+    <form method="post" action="/validate/">
         <label for="validate">Input Strings To Validate</label>
         <br>
         <textarea name="validate"
@@ -43,5 +37,12 @@
         <br>
         <button type="submit">Submit</button>
     </form>
+    <p>String = {{string}}</p>
+    <p>Grammar = {{grammar}}</p>
+    <p>Result = {{result}}</p>
+    <img src="/static/NFA Visualization.gv.png" alt="NFA with Epsilon">
+    <img src="/static/NFA Without Epsilon.gv.png" alt="NFA without Epsilon">
+    
+    
     
 {% endblock %}

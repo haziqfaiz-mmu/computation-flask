@@ -1,23 +1,90 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Convert NFA to Regular Grammar {% endblock %}</h1>
-    <form method="post">
-        <label for="title">Title</label>
+    <h1>{% block title %} Convert Regular Grammar to NFA {% endblock %}</h1>
+    <form method="post" action="/nfacfgsolution/">
+        <label for="alphabet">Input Alphabets</label>
         <br>
-        <input type="text" name="title"
-               placeholder="Message title"
-               value="{{ request.form['title'] }}"></input>
-        <br>
-
-        <label for="content">Message Content</label>
-        <br>
-        <textarea name="content"
-                  placeholder="Message content"
-                  rows="15"
+        <textarea name="alphabet"
+                  placeholder="Enter the alphabets"
+                  rows="1"
                   cols="60"
-                  >{{ request.form['content'] }}</textarea>
+                  >{{ request.form['alphabet'] }}</textarea>
+        <br>
+        <label for="Q">Input the States</label>
+        <br>
+        <textarea name="Q"
+                  placeholder="Enter the states available in the NFA separated by a comma"
+                  rows="1"
+                  cols="60"
+                  >{{ request.form['Q'] }}</textarea>
+        <br>
+        <label for="delta">Input Transition Table</label>
+        <br>
+        <textarea name="delta"
+                  placeholder="Enter the transition table in a dictionary form"
+                  rows="10"
+                  cols="60"
+                  >{{ request.form['delta'] }}
+{
+    'S' : {
+            'a' : ['S','T'],
+            'b' : [],
+            '' : ['T']
+        },
+    'T' : {
+            'a' : [],
+            'b' : ['T'],
+            '' : []
+        }
+}
+                </textarea>
+        <br>
+        <label for="initialState">Input the Initial States</label>
+        <br>
+        <textarea name="initialState"
+                  placeholder="Enter the initial states separated by a comma"
+                  rows="1"
+                  cols="60"
+                  >{{ request.form['initialState'] }}</textarea>
+        <br>
+        <label for="finalState">Input the Final State</label>
+        <br>
+        <textarea name="finalState"
+                  placeholder="Enter the final state"
+                  rows="1"
+                  cols="60"
+                  >{{ request.form['finalState'] }}</textarea>
+
+        </textarea>
         <br>
         <button type="submit">Submit</button>
     </form>
+
+    <p>Alphabets ={{alphabet}} </p>
+    <p>States ={{Q}} </p>
+    <p>Transition Function ={{delta}} </p>
+    <p>Regular Grammar ={{regularGrammar}} </p>
+    <br>
+    
+{% endblock %}
+
+{% block validate %}
+    <form method="post" action="/validate">
+        <label for="validate">Input Strings To Validate</label>
+        <br>
+        <textarea name="validate"
+                  placeholder="Enter 5 strings"
+                  rows="15"
+                  cols="60"
+                  >{{ request.form['validate'] }}</textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <p>String = {{string}}</p>
+    <p>Grammar = {{grammar}}</p>
+    <p>Result = {{result}}</p>
+    <img src="/static/NFA Visualization.gv.png" alt="NFA with Epsilon">
+    
+    
 {% endblock %}
