@@ -11,13 +11,13 @@
                   cols="60"
                   >{{ request.form['alphabet'] }}</textarea>
         <br>
-        <label for="Q">Input the States</label>
+        <label for="states">Input the States</label>
         <br>
-        <textarea name="Q"
+        <textarea name="states"
                   placeholder="Enter the states available in the NFA separated by a comma"
                   rows="1"
                   cols="60"
-                  >{{ request.form['Q'] }}</textarea>
+                  >{{ request.form['states'] }}</textarea>
         <br>
         <label for="delta">Input Transition Table</label>
         <br>
@@ -62,7 +62,7 @@
     </form>
 
     <p>Alphabets ={{alphabet}} </p>
-    <p>States ={{Q}} </p>
+    <p>States ={{states}} </p>
     <p>Transition Function ={{delta}} </p>
     <p>Regular Grammar ={{regularGrammar}} </p>
     <br>
@@ -70,7 +70,7 @@
 {% endblock %}
 
 {% block validate %}
-    <form method="post" action="/validate">
+    <form method="post" action="/validate/">
         <label for="validate">Input Strings To Validate</label>
         <br>
         <textarea name="validate"

@@ -1,7 +1,11 @@
 digraph "NFA Visualization" {
 	graph [rankdir=LR]
 	"" [label="" shape=plaintext]
-	S [label=S shape=doublecircle]
+	T [label=T shape=doublecircle]
+	S [label=S shape=circle]
 	"" -> S [label=""]
 	S -> S [label=a]
+	S -> T [label=a]
+	S -> T [label="ε"]
+	T -> T [label=b]
 }

@@ -56,19 +56,19 @@ def nfacfgsolution():
     global maingrammar
     
     alphabet = set(request.form['alphabet'].replace(" ","").split(","))
-    states = set( request.form['Q'].split(","))
+    states = set( request.form['states'].split(","))
     delta = (request.form['delta']).replace("'",'"').replace("/r","").replace("/n","")
     delta = (json.loads((delta)))
-    initialState = request.form['initialState'].split(",")
+    initialState = request.form['initialState']
     finalState = request.form['finalState'].split(",")
 
     regularGrammar = NFAtoCFG.NFAtoCFG(states,alphabet,delta)
     maingrammar = regularGrammar
 
-    drawNFA.drawNFA(Q, alphabet, delta, initialState, finalState)
+    drawNFA.drawNFA(states, alphabet, delta, initialState, finalState)
     os.replace("/home/haziq/Documents/computation-flask/NFA Visualization.gv.png", "/home/haziq/Documents/computation-flask/static/NFA Visualization.gv.png")
 
-    return render_template('nfacfg.html',alphabet =alphabet, Q=states, delta=delta, regularGrammar=regularGrammar)
+    return render_template('nfacfg.html',alphabet =alphabet, states=states, delta=delta,regularGrammar=regularGrammar)
 
 
 if __name__=="__main__":
